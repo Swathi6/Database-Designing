@@ -1,0 +1,66 @@
+CREATE TABLE book (
+book_id char(10) PRIMARY KEY,
+title varchar(50) NOT NULL
+);
+
+CREATE TABLE book_authors (
+book_id char(10),
+author_name varchar(75),
+fname varchar(25),
+minit varchar(25),
+lname varchar(25) ,
+PRIMARY KEY(book_id, author_name),
+FOREIGN KEY(book_id) REFERENCES book(book_id)
+);
+
+CREATE TABLE book_copies (
+book_id char(10),
+branch_id varchar(3),
+no_of_copies int,
+PRIMARY KEY(book_id, branch_id),
+FOREIGN KEY(book_id) REFERENCES book(book_id),
+FOREIGN KEY(branch_id) REFERENCES library_branch(branch_id)
+);
+
+CREATE TABLE library_branch (
+branch_id varchar(3) PRIMARY KEY,
+branch_name varchar(50) NOT NULL,
+address varchar(50) 
+);
+
+CREATE TABLE borrower (
+card_no int AUTO_INCREMENT,
+fname varchar(25) NOT NULL,
+lname varchar(25) NOT NULL,
+street_address varchar(100) NOT NULL,
+city varchar(30) NOT NULL,
+state_ varchar(3) NOT NULL,
+phone_number varchar(15) NOT NULL,
+PRIMARY KEY(card_no),
+INDEX address(street_address, city, state_)
+);
+
+ALTER TABLE borrower AUTO_INCREMENT=9001;
+
+CREATE TABLE book_loans (
+loan_id int AUTO_INCREMENT,
+book_id char(10) NOT NULL,
+branch_id varchar(3) NOT NULL,
+card_no int NOT NULL,
+date_out DATE NOT NULL,
+date_due DATE NOT NULL,
+date_in DATE,
+FOREIGN KEY(book_id) REFERENCES book(book_id),
+FOREIGN KEY(branch_id) REFERENCES library_branch(branch_id),
+FOREIGN KEY(card_no) REFERENCES borrower(card_no),
+PRIMARY KEY(loan_id) 
+);
+
+ALTER TABLE book_loans AUTO_INCREMENT=1;
+
+CREATE TABLE fines(
+loan_id int PRIMARY KEY,
+fine_amount NUMERIC(15, 2),
+paid BOOLEAN,
+FOREIGN KEY(loan_id) REFERENCES book_loan(loan_id)
+);

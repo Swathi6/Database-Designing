@@ -1,0 +1,11 @@
+LOAD DATA LOCAL INFILE 'C://Users//swathi//Desktop//DB Project//Library_Data - modified//Library_Data//books.csv' INTO TABLE book;
+
+LOAD DATA LOCAL INFILE 'C://Users//swathi//Desktop//DB Project//Library_Data - modified//Library_Data//book_copies.csv' INTO TABLE book_copies;
+
+LOAD DATA LOCAL INFILE 'C://Users//swathi//Desktop//DB Project//Library_Data - modified//Library_Data//books_authors.csv' INTO TABLE book_authors(book_id, author_name, fname, minit, lname);				
+
+LOAD DATA LOCAL INFILE 'C://Users//swathi//Desktop//DB Project//Library_Data - modified//Library_Data//book_loans.csv' INTO TABLE book_loans;
+
+LOAD DATA LOCAL INFILE 'C://Users//swathi//Desktop//DB Project//Library_Data - modified//Library_Data//borrowers.csv' INTO TABLE borrower;	
+
+LOAD DATA LOCAL INFILE 'C://Users//swathi//Desktop//DB Project//Library_Data - modified//Library_Data//library_branch.csv' INTO TABLE library_branch;	
